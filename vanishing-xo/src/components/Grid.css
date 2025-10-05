@@ -1,0 +1,15 @@
+.grid-container > div {
+    border: 2px solid black;
+    color: black;
+    padding: 1em;
+    width: 30px;
+    height: 30px
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    border-radius: 2%;
+    max-width: fit-content;
+}
