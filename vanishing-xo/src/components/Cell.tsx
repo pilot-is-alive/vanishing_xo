@@ -1,16 +1,26 @@
-import { useState } from "react"
+import { useReducer } from "react"
 import "./Cell.css"
 
-export default function Cell() {
-    const [symbol, setSymbol] = useState(" ");
+interface CellState {
+    cell_symbol: string,
+    filled: boolean
+}
+
+interface CellProps {
+    handleTurn: (state: CellState, action: string) => CellState
+}
+
+export default function Cell({handleTurn}: CellProps) {
+    const [state, dispatch] = useReducer(handleTurn, {cell_symbol: " ", filled: false});
+;
 
     function handleClick() {
-        setSymbol("X")
+        dispatch("turn happening")
     }
 
     return (
         <div onClick={handleClick}>
-            {symbol}
+            {state.cell_symbol}
         </div>
     )
 }
