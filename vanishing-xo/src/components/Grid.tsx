@@ -7,12 +7,21 @@ import type { CellState } from "../types/CellTypes"
 export default function Grid() {
 
     const [currentTurn, setCurrentTurn] =  useState("X");
+    const [gridState, setGridState] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]); // 0 = unassigned, 1 = X, 2 = Y
+    //TODO: const [moveQueue, setMoveQueue] = useState([]);
 
     function handleClickTurn(state: CellState, action: string): CellState {
         console.log(action);
         if (state.filled) {
             return state;
         }
+
+        //update grid state based on coords
+        const gridStateIndex = (state.coord.y - 1)*3 + state.coord.x - 1;
+        const newGridState = [...gridState];
+        newGridState[gridStateIndex] = currentTurn=="X"? 1: 2;
+        setGridState(newGridState);
+
         setCurrentTurn(currentTurn=="X"?"O":"X")
         return {
             cell_symbol: currentTurn,
