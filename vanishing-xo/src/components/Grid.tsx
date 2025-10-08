@@ -2,11 +2,7 @@ import "./Grid.css"
 import Cell from "./Cell"
 import TurnDialogue from "./TurnDialogue"
 import { useState } from "react"
-
-interface CellState {
-    cell_symbol: string,
-    filled: boolean
-}
+import type { CellState } from "../types/CellTypes"
 
 export default function Grid() {
 
@@ -20,7 +16,8 @@ export default function Grid() {
         setCurrentTurn(currentTurn=="X"?"O":"X")
         return {
             cell_symbol: currentTurn,
-            filled: true
+            filled: true,
+            coord: state.coord
         }
     }
 
@@ -29,15 +26,15 @@ export default function Grid() {
     return (<>
         <TurnDialogue currentTurn={currentTurn}/>
         <div className="grid-container">
-            <Cell handleTurn={handleClickTurn}/>
-            <Cell handleTurn={handleClickTurn}/>
-            <Cell handleTurn={handleClickTurn}/>
-            <Cell handleTurn={handleClickTurn}/>
-            <Cell handleTurn={handleClickTurn}/>
-            <Cell handleTurn={handleClickTurn}/>
-            <Cell handleTurn={handleClickTurn}/>
-            <Cell handleTurn={handleClickTurn}/>
-            <Cell handleTurn={handleClickTurn}/>
+            <Cell handleTurn={handleClickTurn} coord={{x:1,y:1}}/>
+            <Cell handleTurn={handleClickTurn} coord={{x:2,y:1}}/>
+            <Cell handleTurn={handleClickTurn} coord={{x:3,y:1}}/>
+            <Cell handleTurn={handleClickTurn} coord={{x:1,y:2}}/>
+            <Cell handleTurn={handleClickTurn} coord={{x:2,y:2}}/>
+            <Cell handleTurn={handleClickTurn} coord={{x:3,y:2}}/>
+            <Cell handleTurn={handleClickTurn} coord={{x:1,y:3}}/>
+            <Cell handleTurn={handleClickTurn} coord={{x:2,y:3}}/>
+            <Cell handleTurn={handleClickTurn} coord={{x:3,y:3}}/>
         </div>
     </> 
     )
